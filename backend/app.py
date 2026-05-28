@@ -1,9 +1,16 @@
 import os
+# --- Memory Optimizations for Render Free Tier ---
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
 import numpy as np
 import librosa
 import tempfile
 import tensorflow as tf
-from flask import Flask, request, jsonify, send_file
+
+# Limit TF threads to save memory
+tf.config.threading.set_intra_op_parallelism_threads(1)
+tf.config.threading.set_inter_op_parallelism_threads(1)
 from flask_cors import CORS
 from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Attention, InputLayer
