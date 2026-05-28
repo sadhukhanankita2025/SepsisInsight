@@ -5,3 +5,8 @@ librosa
 soundfile
 pandas
 plotly
+flask
+flask-cors
+fpdf2
+gunicorn
+python-dotenv

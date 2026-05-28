@@ -17,21 +17,7 @@ import io
 
 app = Flask(__name__)
 
-# CORS Configuration - Allow frontend requests
-allowed_origins = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:5173"
-]
-
-# Add Netlify domain when deployed
-import os
-netlify_domain = os.getenv('NETLIFY_DOMAIN', '')
-if netlify_domain:
-    allowed_origins.append(f"https://{netlify_domain}")
-
-CORS(app, resources={r"/api/*": {"origins": allowed_origins}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # -----------------------------------
 # Health Check
