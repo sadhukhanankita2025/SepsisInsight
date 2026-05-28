@@ -12,7 +12,6 @@ import {
   CheckCircle
 } from 'lucide-react';
 import brainImage from '../assets/brain.png';
-import BrainAnatomy3D from '../components/BrainAnatomy3D';
 
 const LandingPage = ({ setPage }) => {
   const steps = [
@@ -250,16 +249,6 @@ const LandingPage = ({ setPage }) => {
           </div>
         </motion.div>
       </section>
-
-      {/* Interactive 3D Anatomy Brain Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60, scale: 0.95 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <BrainAnatomy3D />
-      </motion.div>
 
       {/* How It Works Section */}
       <section id="how-it-works" className="max-w-7xl mx-auto px-6 mt-36 scroll-mt-24">
