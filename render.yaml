@@ -2,6 +2,7 @@ services:
   - type: web
     name: neuroai-backend
     env: python
+    plan: free
     # We set the rootDir to the backend folder where the app.py and requirements.txt are located
     rootDir: backend
     # Install dependencies
