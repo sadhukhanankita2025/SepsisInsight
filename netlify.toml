@@ -1,13 +1,10 @@
 [build]
-  # We run the install and build commands specifically targeting the frontend folder
-  command = "npm --prefix frontend install && npm --prefix frontend run build"
-  # Since we are building from the root, the publish dir is frontend/dist
-  publish = "frontend/dist"
+  base = "frontend"
+  command = "npm install && npm run build"
+  publish = "dist"
 
 [build.environment]
-  # Disable treating warnings as errors (fixes 99% of React/Vite Netlify failures)
   CI = "false"
-  # Force modern Node.js version to support Vite
   NODE_VERSION = "20"
 
 [[redirects]]
