@@ -15,10 +15,10 @@ export const API_BASE = getAPIBase();
 
 export const API_ENDPOINTS = {
   health: `${API_BASE}/api/health`,
-  predictAudio: `${API_BASE}/api/predict`,
-  downloadAudioReport: `${API_BASE}/api/download-report`,
-  predictClinical: `${API_BASE}/api/predict-clinical`,
-  downloadClinicalReport: `${API_BASE}/api/download-clinical-report`,
+  predictAudio: `${API_BASE}/predict`,
+  downloadAudioReport: `${API_BASE}/download-report`,
+  predictClinical: `${API_BASE}/predict-clinical`,
+  downloadClinicalReport: `${API_BASE}/download-clinical-report`,
 };
 
 export default API_ENDPOINTS;
