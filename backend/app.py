@@ -17,10 +17,8 @@ from tensorflow.keras.layers import Attention, InputLayer
 from fpdf import FPDF
 from datetime import datetime
 import traceback
-import matplotlib
-matplotlib.use('Agg') # Non-interactive backend
-import matplotlib.pyplot as plt
-import io
+# matplotlib is imported lazily inside PDF route functions
+# to avoid blocking Gunicorn port binding at startup
 
 app = Flask(__name__)
 
@@ -200,6 +198,9 @@ def download_report():
         pdf.ln(5)
 
         # --- ADD GRAPH TO PDF ---
+        import matplotlib
+        matplotlib.use('Agg')
+        import matplotlib.pyplot as plt
         plt.figure(figsize=(6, 4))
         categories = ['Healthy (Negative)', 'Risk (Positive)']
         values = [(1 - score) * 100, score * 100]
@@ -505,6 +506,9 @@ def download_clinical_report():
         pdf.ln(6)
         
         # --- GENERATE AND EMBED HORIZONTAL GRAPH ---
+        import matplotlib
+        matplotlib.use('Agg')
+        import matplotlib.pyplot as plt
         plt.figure(figsize=(7, 2.2))
         categories = ['Low Risk', 'Medium Risk', 'High Risk']
         scores_arr = [0.35 * 100, 0.35 * 100, 0.30 * 100]
