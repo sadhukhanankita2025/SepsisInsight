@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: neuroai-backend
+    env: python
+    # We set the rootDir to the backend folder where the app.py and requirements.txt are located
+    rootDir: backend
+    # Install dependencies
+    buildCommand: pip install -r requirements.txt
+    # Start Gunicorn server (production ready). Timeout is set high for AI models.
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120
+    # Ensuring we use a compatible Python version
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
