@@ -1,24 +1,16 @@
 import os
-# --- Memory Optimizations for Render Free Tier ---
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-
-import numpy as np
-import librosa
 import tempfile
-import tensorflow as tf
-
-# Limit TF threads to save memory
-tf.config.threading.set_intra_op_parallelism_threads(1)
-tf.config.threading.set_inter_op_parallelism_threads(1)
-from flask_cors import CORS
-from tensorflow.keras.models import load_model
-from tensorflow.keras.layers import Attention, InputLayer
-from fpdf import FPDF
-from datetime import datetime
 import traceback
-# matplotlib is imported lazily inside PDF route functions
-# to avoid blocking Gunicorn port binding at startup
+from datetime import datetime
+from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
+from fpdf import FPDF
+
+# All heavy ML imports (tensorflow, numpy, librosa, matplotlib) are loaded
+# lazily on first request so Gunicorn can bind to the port instantly.
+_tf = None
+_np = None
+_librosa = None
 
 app = Flask(__name__)
 
@@ -54,12 +46,49 @@ class FixedInputLayer(InputLayer):
 # -----------------------------------
 # Load Model
 # -----------------------------------
-MODEL_PATH = "advanced_neuroai_model.h5"
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "advanced_neuroai_model.h5")
 model = None
+
+def _load_heavy_imports():
+    """Load heavy ML dependencies on first use."""
+    global _tf, _np, _librosa
+    if _tf is None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+        os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+        import numpy as np_mod
+        import librosa as librosa_mod
+        import tensorflow as tf_mod
+        tf_mod.config.threading.set_intra_op_parallelism_threads(1)
+        tf_mod.config.threading.set_inter_op_parallelism_threads(1)
+        _tf = tf_mod
+        _np = np_mod
+        _librosa = librosa_mod
+    return _tf, _np, _librosa
 
 def get_model():
     global model
     if model is None:
+        tf, np, librosa = _load_heavy_imports()
+        from tensorflow.keras.models import load_model
+        from tensorflow.keras.layers import Attention, InputLayer
+
+        class FixedAttention(Attention):
+            @classmethod
+            def from_config(cls, config):
+                if "score_mode" in config:
+                    if not isinstance(config["score_mode"], str):
+                        config["score_mode"] = "dot"
+                return cls(**config)
+
+        class FixedInputLayer(InputLayer):
+            @classmethod
+            def from_config(cls, config):
+                if "batch_shape" in config:
+                    config["batch_input_shape"] = config.pop("batch_shape")
+                if "optional" in config:
+                    config.pop("optional")
+                return cls(**config)
+
         print(f"--- Loading Model from {MODEL_PATH} ---")
         if not os.path.exists(MODEL_PATH):
             raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
@@ -78,6 +107,7 @@ def get_model():
 # Feature Extraction
 # -----------------------------------
 def extract_features(audio_path):
+    _, np, librosa = _load_heavy_imports()
     # Use sr=None to keep native sampling rate
     y, sr = librosa.load(audio_path, sr=None)
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40)
@@ -120,6 +150,7 @@ def predict():
 
         print("Extracting features...")
         features = extract_features(temp_audio_path)
+        _, np, _ = _load_heavy_imports()
         features = np.expand_dims(features, axis=0)
         print(f"Input features shape: {features.shape}")
         
@@ -278,6 +309,7 @@ def predict_clinical():
         wbc_count = float(data.get('wbc_count', 7000))
         
         # 1. Synthesize neural signals from clinical biomarkers
+        _, np, _ = _load_heavy_imports()
         gender_val = 1.0 if str(gender).lower() in ['male', 'm', '1'] else 0.0
         features = np.zeros((200, 40), dtype=np.float32)
         time_steps = np.arange(200)
