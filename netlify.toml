@@ -1,0 +1,14 @@
+{
+  "build": "cd frontend && npm install && npm run build",
+  "publish": "frontend/dist",
+  "redirects": [
+    {
+      "from": "/api/*",
+      "to": "/.netlify/functions/proxy/:splat",
+      "status": 200
+    }
+  ],
+  "functions": {
+    "directory": "netlify/functions"
+  }
+}

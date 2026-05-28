@@ -1,0 +1,172 @@
+# ========== FRONTEND (React + Vite + Node.js) ==========
+
+# NPM/Yarn logs
+logs/
+*.log
+npm-debug.log*
+npm-err.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+dist-ssr/
+*.local
+frontend/dist/
+.env.local
+.env.*.local
+
+# Vite cache
+frontend/.vite/
+
+# ========== BACKEND (Python + Flask) ==========
+
+# Python runtime
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Backend-specific
+backend/__pycache__/
+backend/*.egg-info/
+backend/.egg-info/
+
+# Virtual environments
+venv/
+ENV/
+env/
+backend/venv/
+backend/env/
+backend/ENV/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+backend/.env
+backend/.env.local
+
+# Flask cache
+instance/
+.webassets-cache
+*.db
+*.sqlite
+*.sqlite3
+
+# ========== IDE AND EDITORS ==========
+
+# VSCode
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.vscode/settings.json
+
+# JetBrains IDEs
+.idea/
+.idea_modules/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+.vim/
+*~
+*.swp
+*.swo
+
+# Emacs
+*~
+#*#
+*#
+.#*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ========== PROJECT SPECIFIC ==========
+
+# ML Model files (too large to commit - should be downloaded separately)
+# Uncomment if you want to exclude model files
+# *.h5
+# *.pkl
+# *.joblib
+# *.pth
+
+# Temporary/cache files
+*.tmp
+*.temp
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS files
+.DS_Store
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Generated files
+*.pyc
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Uploads and temporary data
+uploads/
+temp/
+tmp/
+data/temp/
+
+# ========== DOCUMENTATION ==========
+# Exclude node_modules in entire docs
+docs/node_modules/
+docs/.vuepress/dist/
+
