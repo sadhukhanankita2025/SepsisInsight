@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'; 
-import { Mail, Phone, MapPin, Send, HelpCircle, HeartHandshake, RefreshCw } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, HelpCircle, HeartHandshake, RefreshCw, Activity } from 'lucide-react';
 
 const Contact = ({ isDark }) => {
   const [formData, setFormData] = useState({
@@ -41,8 +41,8 @@ const Contact = ({ isDark }) => {
         vy: (Math.random() - 0.5) * 0.8,
         radius: Math.random() * 3 + 1.5,
         color: isDark 
-          ? (i % 3 === 0 ? '#3B82F6' : i % 3 === 1 ? '#8B5CF6' : '#EC4899') 
-          : (i % 3 === 0 ? '#A7C7FF' : i % 3 === 1 ? '#C4B6CE' : '#FF8BCB')
+          ? (i % 3 === 0 ? '#3B82F6' : i % 3 === 1 ? '#22C55E' : '#EF4444') 
+          : (i % 3 === 0 ? '#60A5FA' : i % 3 === 1 ? '#4ADE80' : '#F87171')
       });
     }
 
@@ -90,7 +90,7 @@ const Contact = ({ isDark }) => {
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             const alpha = (1 - dist / maxDistance) * (isDark ? 0.6 : 0.4);
-            ctx.strokeStyle = isDark ? `rgba(139, 92, 246, ${alpha})` : `rgba(163, 138, 178, ${alpha})`;
+            ctx.strokeStyle = isDark ? `rgba(59, 130, 246, ${alpha})` : `rgba(59, 130, 246, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
@@ -106,7 +106,7 @@ const Contact = ({ isDark }) => {
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
             const alpha = (1 - mdist / 140) * (isDark ? 0.7 : 0.5);
-            ctx.strokeStyle = isDark ? `rgba(59, 130, 246, ${alpha})` : `rgba(167, 199, 255, ${alpha})`;
+            ctx.strokeStyle = isDark ? `rgba(239, 68, 68, ${alpha})` : `rgba(239, 68, 68, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -148,17 +148,17 @@ const Contact = ({ isDark }) => {
 
   return (
     <div className="pt-32 pb-24 max-w-7xl mx-auto px-6 relative">
-      <div className="absolute left-[-5%] top-[15%] w-[400px] h-[400px] bg-electric-lavender/10 dark:bg-dm-electric-blue/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
+      <div className="absolute left-[-5%] top-[15%] w-[400px] h-[400px] bg-blue-100 dark:bg-blue-500/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
 
       <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-soft-purple/10 dark:bg-dm-neural-purple/10 border border-soft-purple/30 dark:border-dm-neural-purple/30 text-electric-lavender dark:text-dm-neural-purple text-xs font-bold uppercase tracking-wider">
-          <HeartHandshake className="w-3.5 h-3.5" /> Support Channel
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 dark:bg-blue-500/10 border border-blue-500/30 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
+          <HeartHandshake className="w-3.5 h-3.5" /> Clinical Support
         </div>
         <h1 className="text-4xl lg:text-5xl font-extrabold font-outfit text-primary-heading dark:text-dm-text-primary">
-          Connect With Us
+          Connect With Our Team
         </h1>
         <p className="text-secondary-text dark:text-dm-text-secondary">
-          Have queries about model accuracies, integrations, or operational compliance? Drop us a line.
+          Have questions about SepsisAI Care implementation, compliance, or technical support? We're here to help.
         </p>
       </div>
 
@@ -167,34 +167,34 @@ const Contact = ({ isDark }) => {
         <div className="lg:col-span-7 space-y-8">
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="glass-card p-5 border border-white/60 dark:border-dm-border hover:border-cool-blue-glow/50 dark:hover:border-dm-electric-blue/50 transition-all flex flex-col items-center text-center shadow-sm">
-              <div className="w-10 h-10 bg-cool-blue-glow/10 dark:bg-dm-electric-blue/10 border border-cool-blue-glow/30 dark:border-dm-electric-blue/30 rounded-xl flex items-center justify-center mb-3">
-                <Mail className="text-cool-blue-glow dark:text-dm-electric-blue w-5 h-5" />
+            <div className="glass-card p-5 border border-white/60 dark:border-dm-border hover:border-blue-500/50 dark:hover:border-blue-400/50 transition-all flex flex-col items-center text-center shadow-sm">
+              <div className="w-10 h-10 bg-blue-500/10 dark:bg-blue-500/10 border border-blue-500/30 dark:border-blue-500/30 rounded-xl flex items-center justify-center mb-3">
+                <Mail className="text-blue-600 dark:text-blue-400 w-5 h-5" />
               </div>
               <p className="text-[10px] text-secondary-text dark:text-dm-text-muted uppercase font-bold">Mail Support</p>
-              <p className="text-sm font-bold text-primary-heading dark:text-dm-text-primary mt-1 select-all">care@neuro.ai</p>
+              <p className="text-sm font-bold text-primary-heading dark:text-dm-text-primary mt-1 select-all">care@sepsisai.ai</p>
             </div>
 
-            <div className="glass-card p-5 border border-white/60 dark:border-dm-border hover:border-electric-lavender/50 dark:hover:border-dm-neural-purple/50 transition-all flex flex-col items-center text-center shadow-sm">
-              <div className="w-10 h-10 bg-electric-lavender/10 dark:bg-dm-neural-purple/10 border border-electric-lavender/30 dark:border-dm-neural-purple/30 rounded-xl flex items-center justify-center mb-3">
-                <Phone className="text-electric-lavender dark:text-dm-neural-purple w-5 h-5" />
+            <div className="glass-card p-5 border border-white/60 dark:border-dm-border hover:border-green-500/50 dark:hover:border-green-400/50 transition-all flex flex-col items-center text-center shadow-sm">
+              <div className="w-10 h-10 bg-green-500/10 dark:bg-green-500/10 border border-green-500/30 dark:border-green-500/30 rounded-xl flex items-center justify-center mb-3">
+                <Phone className="text-green-600 dark:text-green-400 w-5 h-5" />
               </div>
               <p className="text-[10px] text-secondary-text dark:text-dm-text-muted uppercase font-bold">Call Center</p>
-              <p className="text-sm font-bold text-primary-heading dark:text-dm-text-primary mt-1 select-all">+1 (800) NEURO</p>
+              <p className="text-sm font-bold text-primary-heading dark:text-dm-text-primary mt-1 select-all">+1 (800) SEPSIS-AI</p>
             </div>
 
-            <div className="glass-card p-5 border border-white/60 dark:border-dm-border hover:border-neon-pink/50 dark:hover:border-dm-neon-pink/50 transition-all flex flex-col items-center text-center shadow-sm">
-              <div className="w-10 h-10 bg-neon-pink/10 dark:bg-dm-neon-pink/10 border border-neon-pink/30 dark:border-dm-neon-pink/30 rounded-xl flex items-center justify-center mb-3">
-                <MapPin className="text-neon-pink dark:text-dm-neon-pink w-5 h-5" />
+            <div className="glass-card p-5 border border-white/60 dark:border-dm-border hover:border-red-500/50 dark:hover:border-red-400/50 transition-all flex flex-col items-center text-center shadow-sm">
+              <div className="w-10 h-10 bg-red-500/10 dark:bg-red-500/10 border border-red-500/30 dark:border-red-500/30 rounded-xl flex items-center justify-center mb-3">
+                <MapPin className="text-red-600 dark:text-red-400 w-5 h-5" />
               </div>
-              <p className="text-[10px] text-secondary-text dark:text-dm-text-muted uppercase font-bold">Location</p>
-              <p className="text-sm font-bold text-primary-heading dark:text-dm-text-primary mt-1">San Francisco, CA</p>
+              <p className="text-[10px] text-secondary-text dark:text-dm-text-muted uppercase font-bold">Headquarters</p>
+              <p className="text-sm font-bold text-primary-heading dark:text-dm-text-primary mt-1">Boston, MA</p>
             </div>
           </div>
 
           {/* Form Panel */}
           <div className="glass-panel p-8 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 dark:via-dm-border to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/50 to-red-500/50 dark:via-blue-400/50 to-red-400/50 to-transparent" />
 
             <AnimatePresence mode="wait">
               {!submitted ? (
@@ -216,7 +216,7 @@ const Contact = ({ isDark }) => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-electric-lavender dark:focus:border-dm-electric-blue focus:shadow-[0_0_15px_rgba(163,138,178,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm shadow-inner dark:shadow-none"
+                        className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm shadow-inner dark:shadow-none"
                       />
                       <label className="absolute left-4 top-3.5 text-secondary-text dark:text-dm-text-muted pointer-events-none transition-all duration-300 transform scale-100 origin-[0] text-sm">
                         Full Name
@@ -231,7 +231,7 @@ const Contact = ({ isDark }) => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-electric-lavender dark:focus:border-dm-electric-blue focus:shadow-[0_0_15px_rgba(163,138,178,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm shadow-inner dark:shadow-none"
+                        className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm shadow-inner dark:shadow-none"
                       />
                       <label className="absolute left-4 top-3.5 text-secondary-text dark:text-dm-text-muted pointer-events-none transition-all duration-300 transform scale-100 origin-[0] text-sm">
                         Email Address
@@ -246,7 +246,7 @@ const Contact = ({ isDark }) => {
                       placeholder=" "
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-electric-lavender dark:focus:border-dm-electric-blue focus:shadow-[0_0_15px_rgba(163,138,178,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm shadow-inner dark:shadow-none"
+                      className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm shadow-inner dark:shadow-none"
                     />
                     <label className="absolute left-4 top-3.5 text-secondary-text dark:text-dm-text-muted pointer-events-none transition-all duration-300 transform scale-100 origin-[0] text-sm">
                       Subject Matter
@@ -261,7 +261,7 @@ const Contact = ({ isDark }) => {
                       required
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-electric-lavender dark:focus:border-dm-electric-blue focus:shadow-[0_0_15px_rgba(163,138,178,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm resize-none shadow-inner dark:shadow-none"
+                      className="floating-input w-full bg-white/50 dark:bg-[#0B1020]/40 border border-white/80 dark:border-dm-border rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] dark:focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] text-primary-heading dark:text-dm-text-primary transition-all duration-300 text-sm resize-none shadow-inner dark:shadow-none"
                     />
                     <label className="absolute left-4 top-3.5 text-secondary-text dark:text-dm-text-muted pointer-events-none transition-all duration-300 transform scale-100 origin-[0] text-sm">
                       Message details...
@@ -272,11 +272,14 @@ const Contact = ({ isDark }) => {
                     type="submit"
                     disabled={submitting}
                     className="w-full relative overflow-hidden group gradient-btn py-4 rounded-xl flex items-center justify-center gap-2"
+                    style={{
+                      background: isDark ? '#081530' : '#1E40AF',
+                    }}
                   >
-                    <span className="relative z-10 flex items-center gap-2 text-white-text">
+                    <span className="relative z-10 flex items-center gap-2 text-white">
                       {submitting ? (
                         <>
-                          <RefreshCw className="w-5 h-5 animate-spin" /> Verifying Connection...
+                          <RefreshCw className="w-5 h-5 animate-spin" /> Processing Inquiry...
                         </>
                       ) : (
                         <>
@@ -284,7 +287,7 @@ const Contact = ({ isDark }) => {
                         </>
                       )}
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-deep-charcoal to-rich-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0" />
                   </button>
                 </motion.form>
               ) : (
@@ -296,13 +299,13 @@ const Contact = ({ isDark }) => {
                   transition={{ duration: 0.3 }}
                   className="text-center py-12 space-y-6"
                 >
-                  <div className="w-16 h-16 bg-mint-green/10 border border-mint-green/30 rounded-full flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(52,211,153,0.2)]">
-                    <Send className="text-mint-green w-7 h-7" />
+                  <div className="w-16 h-16 bg-green-500/10 border border-green-500/30 rounded-full flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(34,197,94,0.2)]">
+                    <Send className="text-green-600 w-7 h-7" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-2xl font-bold font-outfit text-primary-heading dark:text-dm-text-primary">Message Transmitted</h3>
+                    <h3 className="text-2xl font-bold font-outfit text-primary-heading dark:text-dm-text-primary">Message Sent</h3>
                     <p className="text-secondary-text dark:text-dm-text-secondary text-sm max-w-xs mx-auto">
-                      Thank you. Your clinical inquiry has been encrypted and sent to our diagnostic support team.
+                      Thank you. Your inquiry has been received by our clinical support team.
                     </p>
                   </div>
                   <button
@@ -317,21 +320,21 @@ const Contact = ({ isDark }) => {
           </div>
         </div>
 
-        {/* Right Side: Neural Canvas */}
+        {/* Right Side: Clinical Canvas */}
         <div className="lg:col-span-5 h-[480px] glass-panel relative overflow-hidden flex flex-col justify-between group bg-white/30 dark:bg-dm-bg-section/30">
           <div className="absolute top-4 left-6 z-20 pointer-events-none">
-            <span className="text-[10px] text-electric-lavender dark:text-dm-neural-purple uppercase font-bold tracking-widest bg-electric-lavender/10 dark:bg-dm-neural-purple/10 border border-electric-lavender/20 dark:border-dm-neural-purple/20 px-2.5 py-1 rounded-full flex items-center gap-1.5 glow-purple">
-              <HelpCircle className="w-3.5 h-3.5 animate-pulse" /> Interactive Neural Net
+            <span className="text-[10px] text-blue-600 dark:text-blue-400 uppercase font-bold tracking-widest bg-blue-500/10 dark:bg-blue-500/10 border border-blue-500/20 dark:border-blue-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+              <HelpCircle className="w-3.5 h-3.5 animate-pulse" /> Vital Sign Monitor
             </span>
           </div>
 
           <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full cursor-crosshair" />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-soft-lavender/40 dark:from-dm-bg-secondary/80 via-transparent to-transparent z-15 pointer-events-none opacity-60 dark:opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-100/40 dark:from-dm-bg-secondary/80 via-transparent to-transparent z-15 pointer-events-none opacity-60 dark:opacity-80" />
 
           <div className="absolute bottom-6 left-6 z-20 pointer-events-none pr-6">
             <p className="text-xs font-mono text-secondary-text dark:text-dm-text-muted opacity-60 group-hover:opacity-100 transition-opacity">
-              &gt; Move cursor over canvas to stimulate synapse connectors.
+              &gt; Move cursor to simulate real-time vital sign fluctuations.
             </p>
           </div>
         </div>
