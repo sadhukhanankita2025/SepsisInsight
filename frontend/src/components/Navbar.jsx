@@ -63,18 +63,13 @@ const Navbar = ({ setPage, currentPage, isDark, toggleTheme }) => {
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-2 group focus:outline-none"
           >
-            <span className="text-[17px] font-bold tracking-wide font-outfit select-none flex items-center">
+            <span className="text-[20px] font-bold tracking-wide font-outfit select-none flex items-center">
               <span className="text-primary-heading dark:text-dm-text-primary transition-colors duration-300">AI Neuro&nbsp;</span>
               <span
-                className="transition-colors duration-300"
-                style={{
-                  background: isDark ? 'linear-gradient(90deg, #3B82F6, #8B5CF6)' : 'linear-gradient(90deg, #A38AB2, #FF8BCB)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}
-              >
-                Care
-              </span>
+            className="bg-gradient-to-r from-[#A38AB2] to-[#FF8BCB] dark:from-[#3B82F6] dark:to-[#8B5CF6] bg-clip-text text-transparent"
+          >
+            Care
+          </span>
             </span>
           </button>
 
