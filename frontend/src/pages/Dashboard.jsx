@@ -16,8 +16,7 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
-
-const API_BASE = window.location.port === '5173' ? 'http://localhost:5000' : '';
+import { API_BASE } from '../config/api';
 
 const Dashboard = ({ isDark }) => {
   const [formData, setFormData] = useState({

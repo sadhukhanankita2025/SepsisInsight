@@ -3,12 +3,17 @@
 
 const getAPIBase = () => {
   // During development on localhost
-  if (window.location.localhost || window.location.port === '5173' || window.location.port === '3000') {
+  if (
+    window.location.hostname === 'localhost' || 
+    window.location.hostname === '127.0.0.1' || 
+    window.location.port === '5173' || 
+    window.location.port === '3000'
+  ) {
     return import.meta.env.VITE_API_URL || 'http://localhost:5000';
   }
   
-  // During production on Netlify, use Railway backend URL
-  return import.meta.env.VITE_API_URL || '';
+  // During production, fallback to Render backend URL
+  return import.meta.env.VITE_API_URL || 'https://neuroai-backend-46z6.onrender.com';
 };
 
 export const API_BASE = getAPIBase();
